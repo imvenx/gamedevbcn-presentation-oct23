@@ -11,7 +11,7 @@
 
       <mask id="hole">
         <rect x="0" y="0" width="100%" height="100%" fill="white" />
-        <circle ref="lightEl" cx="250" cy="250" r="10%" fill="url(#radial-gradient)" />
+        <circle v-if="isLanternOn" ref="lightEl" cx="250" cy="250" r="10%" fill="url(#radial-gradient)" />
       </mask>
     </defs>
 
@@ -31,19 +31,33 @@
 <script setup lang="ts">
 import { Arcane, GetPointerEvent } from 'arcanepad-web-sdk';
 import { pads } from 'src/Global';
+import { LanternChangeLightIntensityEvent, LanternGetLanternPointEvent, LanternToggleOnOffEvent, MyEventNames } from 'src/models';
 import { onMounted, ref } from 'vue';
 
 const lightEl = ref<SVGCircleElement>()
+const isLanternOn = ref(false)
 
 onMounted(() => {
   if (!pads.value?.length) return
 
-  pads.value[0].startGetPointer()
+  // pads.value[0].startGetPointer()
 
-  pads.value[0].onGetPointer((e: GetPointerEvent) => {
-    lightEl.value?.setAttribute('cx', e.x + '%')
-    lightEl.value?.setAttribute('cy', e.y + '%')
+  // pads.value[0].onGetPointer((e: GetPointerEvent) => {
+  //   lightEl.value?.setAttribute('cx', e.x + '%')
+  //   lightEl.value?.setAttribute('cy', e.y + '%')
+  // })
+
+  Arcane.msg.on(MyEventNames.LanternGetPoint, ({ x, y }: LanternGetLanternPointEvent) => {
+    lightEl.value?.setAttribute('cx', x + '%')
+    lightEl.value?.setAttribute('cy', y + '%')
   })
+
+  Arcane.msg.on(MyEventNames.LanternChangeIntensity, ({ intensity }: LanternChangeLightIntensityEvent) => {
+    lightEl.value?.setAttribute('r', intensity + '%')
+  })
+
+  Arcane.msg.on(MyEventNames.LanternToggleOnOff, () => { isLanternOn.value = !isLanternOn.value })
 })
+
 
 </script>
