@@ -1,7 +1,6 @@
 <template>
   <svg style=" width: 100%; height: 100vh;">
 
-
     <!-- Mask definition -->
     <defs>
       <radialGradient id="radial-gradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
@@ -16,11 +15,11 @@
     </defs>
 
     <!-- Background -->
-    <rect x="0" y="0" width="100%" height="100%" fill="white" />
+    <rect x="0" y="0" width="100%" height="100%" fill="rgb(100, 100, 100)" />
 
+    <rect x="0" y="0" width="100%" height="25%" fill="black" />
 
-    <rect x="0" y="0" width="100%" height="25%" fill="red" />
-
+    <ArcanepadText />
 
     <!-- Overlay Rect with hole -->
     <rect x="0" y="0" width="100%" height="100%" fill="black" mask="url(#hole)" />
@@ -31,6 +30,7 @@
 <script setup lang="ts">
 import { Arcane, GetPointerEvent } from 'arcanepad-web-sdk';
 import { pads } from 'src/Global';
+import ArcanepadText from 'src/components/ArcanepadText.vue';
 import { LanternChangeLightIntensityEvent, LanternGetLanternPointEvent, LanternToggleOnOffEvent, MyEventNames } from 'src/models';
 import { onMounted, ref } from 'vue';
 

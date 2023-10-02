@@ -1,6 +1,6 @@
 <template>
   <h1>Lantern</h1>
-  <input type="range" v-model="lightIntensity" min="0" max="100">
+  <input type="range" v-model="lightIntensity" min="1" max="40">
   <button @click="toggleOnOff()">On/Off</button>
 </template>
 
