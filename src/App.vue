@@ -1,6 +1,8 @@
 <template>
-  <router-view v-if="initialized && pads?.length" />
-  <!-- <ArcaneStories /> -->
+  <!-- <router-view v-if="initialized && pads?.length" /> -->
+  <!-- <ArcaneStories v-if="initialized && pads?.length" /> -->
+
+  <!-- <iframe :src="addQueryParams('http://localhost:8060/tmp_js_export.html')" frameborder="0" style="width: 100%; height: 100vh;"></iframe> -->
 </template>
 
 <script setup lang="ts">
@@ -25,4 +27,22 @@ onBeforeMount(async () => {
     pads.value?.push(new ArcanePad({ deviceId, internalId, iframeId, isConnected: true, user }))
   })
 })
+
+function addQueryParams(url: string, queryParams: Record<any, any>): string {
+  let params = Object.keys(queryParams).map(key => key + '=' + encodeURIComponent(String(queryParams[key]))).join('&')
+
+  let separator
+  if (url.includes('?')) {
+    separator = '&'
+  } else {
+    separator = '?'
+  }
+
+  let hashIndex = url.indexOf('#/')
+  if (hashIndex !== -1) {
+    return url.slice(0, hashIndex) + separator + params + url.slice(hashIndex)
+  } else {
+    return url + separator + params
+  }
+}
 </script>
