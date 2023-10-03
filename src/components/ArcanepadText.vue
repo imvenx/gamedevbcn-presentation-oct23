@@ -20,7 +20,7 @@
 
 <style scoped>
 path {
-  stroke: darkcyan;
+  stroke: gray;
   /* animation: strokeAnim 18s infinite; */
 }
 
