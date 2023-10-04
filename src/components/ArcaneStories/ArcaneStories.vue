@@ -4,6 +4,7 @@
     <!-- <ArcanepadText /> -->
     <!-- <BabylonTest /> -->
     <!-- <TreeJsTest /> -->
+    <InsertCoin />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import LanternPad from 'src/pages/LanternPad.vue';
 import ArcanepadText from 'src/components/ArcanepadText.vue';
 import BabylonTest from '../BabylonTest.vue';
 import TreeJsTest from '../TreeJsTest.vue';
+import InsertCoin from '../InsertCoin.vue';
 
 
 </script>
