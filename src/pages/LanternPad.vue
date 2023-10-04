@@ -5,9 +5,9 @@
 </template>
 
 <script setup lang="ts">
-import { AEventName, Arcane, CalibratePointerEvent } from 'arcanepad-web-sdk';
-import { LanternChangeLightIntensityEvent, LanternGetLanternPointEvent, LanternToggleOnOffEvent, MyEventNames } from 'src/models';
-import { onMounted, ref, watch } from 'vue';
+import { Arcane, ArcaneBaseEvent } from 'arcanepad-web-sdk';
+import { LanternChangeLightIntensityEvent, LanternGetLanternPointEvent, LanternToggleOnOffEvent } from 'src/models';
+import { onMounted, onUnmounted, ref, watch } from 'vue';
 
 const lightIntensity = ref(10)
 
@@ -24,7 +24,13 @@ watch(lightIntensity, () => {
   Arcane.msg.emitToViews(new LanternChangeLightIntensityEvent(lightIntensity.value))
 })
 
+
 function toggleOnOff() { Arcane.msg.emitToViews(new LanternToggleOnOffEvent()) }
+
+onUnmounted(() => {
+  Arcane.msg.emitToViews(new ArcaneBaseEvent('OffLantern'))
+  Arcane.pad?.stopGetPointer()
+})
 
 </script>
 

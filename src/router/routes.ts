@@ -4,7 +4,11 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [{ path: '', component: () => import('pages/IndexView.vue') }],
+    children: [
+      { path: '', component: () => import('pages/IndexView.vue') },
+      { path: 'UnlockScene', component: () => import('pages/UnlockScene.vue') },
+
+    ],
   },
   {
     path: '/Pad',
@@ -13,6 +17,8 @@ const routes: RouteRecordRaw[] = [
       {
         path: '', component: () => import('pages/IndexPad.vue'), children: [
           { path: '', component: () => import('pages/LanternPad.vue'), },
+          { path: 'LanternPad', component: () => import('pages/LanternPad.vue'), },
+          { path: 'CoinPad', component: () => import('pages/CoinPad.vue'), },
         ]
       },
     ],

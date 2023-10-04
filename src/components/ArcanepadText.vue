@@ -1,5 +1,5 @@
 <template>
-  <svg width="100%" height="80%" version="1.1" viewBox="-15 0 100 15.53" xmlns="http://www.w3.org/2000/svg">
+  <svg id="textCont" width="100%" height="80%" version="1.1" viewBox="-15 0 100 15.53" xmlns="http://www.w3.org/2000/svg">
 
     <g transform="translate(-53.237 -99.611)">
       <path class="shadow" transform="matrix(1.0696 0 0 1.0696 -427.46 -316.01)"
@@ -12,16 +12,55 @@
       <path d="m64.86 102.58h53.725" fill="none" />
 
     </g>
+    <foreignObject>
+      <audio ref="coolAudio" src="src/assets/audio/cool.mp3" />
+      <audio ref="coinEnter" src="src/assets/audio/coinEnter.mp3" />
+    </foreignObject>
   </svg>
 </template>
 
 <script lang="ts" setup>
+import { onMounted, onUnmounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const coolAudio = ref<HTMLAudioElement>()
+const coinEnter = ref<HTMLAudioElement>()
+// onMounted(() => handleEvent())
+
+// onMounted(() => coolAudio.value?.play())
+
+
+const router = useRouter()
+const handleEvent = () => {
+  const textCont = document.getElementById('textCont') as HTMLDivElement
+  const paths = document.querySelectorAll('path')
+
+
+  setTimeout(() => {
+    router.push('UnlockScene')
+  }, 18000);
+  paths.forEach(p => p.classList.add('animate'))
+  coolAudio.value?.play()
+  coinEnter.value?.play()
+  // router.push('UnlockScene')
+  // setTimeout(() => {
+  //   paths.forEach(p => p.classList.remove('strokeAnim'))
+  // }, 18000);
+};
+
+onMounted(() => {
+  window.addEventListener('arcaneCoinAnimEnd', handleEvent)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('arcaneCoinAnimEnd', handleEvent)
+});
 </script>
 
 <style scoped>
-path {
+.animate {
   stroke: gray;
-  /* animation: strokeAnim 18s infinite; */
+  animation: strokeAnim 18s infinite;
 }
 
 .shadow {
@@ -86,13 +125,13 @@ path {
   }
 
 
-  24.9999% {
+  40.9999% {
     stroke: cyan;
     stroke-dashoffset: 0;
     stroke-dasharray: 65;
   }
 
-  25% {
+  41% {
     stroke: cyan;
     stroke-dashoffset: 1000000;
     stroke-dasharray: 100;

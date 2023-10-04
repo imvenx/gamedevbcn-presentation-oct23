@@ -1,6 +1,7 @@
 <template>
   <router-view v-if="initialized && pads?.length" />
-  <!-- <ArcaneStories v-if="initialized && pads?.length" /> -->
+  <!-- <ArcaneStories /> -->
+
   <!-- <iframe src="\godot-project\index.html" frameborder="0"
     style="width: 100%; height: 100vh; position: absolute; left: 0; opacity: .5;"></iframe> -->
   <!-- <iframe :src="addQueryParams('http://localhost:8060/tmp_js_export.html')" frameborder="0" style="width: 100%; height: 100vh;"></iframe> -->
@@ -9,7 +10,7 @@
 <script setup lang="ts">
 import { AEventName, Arcane, ArcanePad, IframePadConnectEvent } from 'arcanepad-web-sdk';
 import { InitialState } from 'arcanepad-web-sdk/src/models/models';
-import { onBeforeMount, ref } from 'vue';
+import { onBeforeMount, onMounted, ref } from 'vue';
 import { pads } from './Global';
 import ArcaneStories from './components/ArcaneStories/ArcaneStories.vue';
 
