@@ -1,10 +1,14 @@
 <template>
-  <h1>Pad</h1>
   <RouterView />
-  <button @click="calibratePointer(true)">Calibrate TopLeft</button>
-  <button @click="calibratePointer(false)">Calibrate BottomRight</button>
-  <button @click="goToPad('back')">Last Pad</button>
-  <button @click="goToPad('next')">Next Pad</button>
+  <div style="z-index: 999; display: grid; position: absolute;
+    top:80%; bottom: 0; grid-template-columns: 50% 50%; width:100%; ">
+    <button @click="calibratePointer(true)">Calibrate TopLeft</button>
+    <button @click="calibratePointer(false)">Calibrate BottomRight</button>
+    <button @click="calibrateQuaternion()">Calibrate Quaternion</button>
+    <button></button>
+    <button @click="goToPad('back')">Last Pad</button>
+    <button @click="goToPad('next')">Next Pad</button>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -14,9 +18,7 @@ import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const padsRoutes = [
-  'LanternPad', 'CoinPad'
-]
+const padsRoutes = ['LanternPad', 'CoinPad', 'RotatePad']
 let currentPad = 0
 
 function goToPad(direction: 'next' | 'back') {
@@ -41,5 +43,14 @@ function calibratePointer(isTopLeft: boolean) {
   Arcane.pad?.calibratePointer(isTopLeft)
 }
 
+function calibrateQuaternion() {
+  Arcane.pad?.calibrateQuaternion()
+}
 </script>
 
+<style scoped>
+button {
+  background-color: black;
+  color: cyan;
+}
+</style>

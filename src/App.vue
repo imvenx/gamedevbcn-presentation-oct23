@@ -1,6 +1,7 @@
 <template>
   <router-view v-if="initialized && pads?.length" />
   <!-- <ArcaneStories /> -->
+  <!-- <ArcaneStories v-if="initialized && pads?.length" /> -->
 
   <!-- <iframe src="\godot-project\index.html" frameborder="0"
     style="width: 100%; height: 100vh; position: absolute; left: 0; opacity: .5;"></iframe> -->

@@ -57,6 +57,8 @@
   </svg>
 
   <ArcaneCoin />
+
+  <audio ref="darkAtmosphereAudio" src="src/assets/audio/darkAtmosphere.mp3" />
 </template>
 
 <script setup lang="ts">
@@ -70,12 +72,18 @@ import { onMounted, ref } from 'vue';
 
 const lightEl = ref<SVGCircleElement>()
 const isLanternOn = ref(false)
+const darkAtmosphereAudio = ref<HTMLAudioElement>()
 
 onMounted(() => {
+  darkAtmosphereAudio.value!.volume = .1
+  darkAtmosphereAudio.value?.play()
+
   if (!pads.value?.length) return
 
   window.addEventListener('arcaneCoinAnimEnd', () => {
     document.getElementById('hiddenArcanepadText')!.style.display = ''
+    darkAtmosphereAudio.value?.pause()
+    // setTimeout(() =>, 1000);
   })
 
   // pads.value[0].startGetPointer()

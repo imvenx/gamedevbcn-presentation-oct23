@@ -14,7 +14,8 @@
     </g>
     <foreignObject>
       <audio ref="coolAudio" src="src/assets/audio/cool.mp3" />
-      <audio ref="coinEnter" src="src/assets/audio/coinEnter.mp3" />
+      <audio ref="downloadAudio" src="src/assets/audio/downloadAudio.mp3" />
+      <audio ref="uploadAudio" src="src/assets/audio/uploadAudio.mp3" />
     </foreignObject>
   </svg>
 </template>
@@ -24,7 +25,8 @@ import { onMounted, onUnmounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const coolAudio = ref<HTMLAudioElement>()
-const coinEnter = ref<HTMLAudioElement>()
+const downloadAudio = ref<HTMLAudioElement>()
+const uploadAudio = ref<HTMLAudioElement>()
 // onMounted(() => handleEvent())
 
 // onMounted(() => coolAudio.value?.play())
@@ -35,13 +37,18 @@ const handleEvent = () => {
   const textCont = document.getElementById('textCont') as HTMLDivElement
   const paths = document.querySelectorAll('path')
 
-
   setTimeout(() => {
-    router.push('UnlockScene')
-  }, 18000);
-  paths.forEach(p => p.classList.add('animate'))
-  coolAudio.value?.play()
-  coinEnter.value?.play()
+    setTimeout(() => router.push('UnlockScene'), 18000)
+
+    paths.forEach(p => p.classList.add('animate'))
+    coolAudio.value?.play()
+    downloadAudio.value?.play()
+    downloadAudio.value!.volume = .5
+    setTimeout(() => {
+      downloadAudio.value!.volume = .5
+      uploadAudio.value?.play()
+    }, 13000);
+  }, 1000);
   // router.push('UnlockScene')
   // setTimeout(() => {
   //   paths.forEach(p => p.classList.remove('strokeAnim'))

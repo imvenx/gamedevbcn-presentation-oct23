@@ -7,6 +7,7 @@ const routes: RouteRecordRaw[] = [
     children: [
       { path: '', component: () => import('pages/IndexView.vue') },
       { path: 'UnlockScene', component: () => import('pages/UnlockScene.vue') },
+      { path: 'RevealScene', component: () => import('pages/RevealScene.vue') },
 
     ],
   },
@@ -19,6 +20,7 @@ const routes: RouteRecordRaw[] = [
           { path: '', component: () => import('pages/LanternPad.vue'), },
           { path: 'LanternPad', component: () => import('pages/LanternPad.vue'), },
           { path: 'CoinPad', component: () => import('pages/CoinPad.vue'), },
+          { path: 'RotatePad', component: () => import('pages/RotatePad.vue'), },
         ]
       },
     ],

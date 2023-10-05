@@ -3,6 +3,9 @@
   left: 0%; bottom: 10%; " viewBox="0 0 80 80">
     <circle r="30" cx="50%" cy="50%" fill="darkcyan" stroke="cyan" stroke-width="1%" />
     <text fill="cyan" x="50%" y="51%" font-size="50" text-anchor="middle" dominant-baseline="middle">A</text>
+    <foreignObject>
+      <audio ref="coinEnter" src="src/assets/audio/coinEnter.mp3" />
+    </foreignObject>
   </svg>
 </template>
 
@@ -11,6 +14,8 @@ import { Arcane } from 'arcanepad-web-sdk';
 import { onMounted, ref } from 'vue';
 
 const showCoin = ref(false)
+const coinEnter = ref<HTMLAudioElement>()
+
 
 onMounted(() => {
   Arcane.msg.on('ThrowCoin', () => {
@@ -18,6 +23,10 @@ onMounted(() => {
     setTimeout(() => {
       document.getElementById('arcaneCoin')!.addEventListener("animationend", () => window.dispatchEvent(new CustomEvent('arcaneCoinAnimEnd')))
     }, 1000)
+
+    setTimeout(() => {
+      coinEnter.value?.play()
+    }, 4500);
   })
 })
 
