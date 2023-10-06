@@ -18,7 +18,13 @@ export class LanternChangeLightIntensityEvent extends ArcaneBaseEvent {
   }
 }
 
-export class LanternToggleOnOffEvent extends ArcaneBaseEvent { constructor() { super(MyEventNames.LanternToggleOnOff) } }
+export class LanternToggleOnOffEvent extends ArcaneBaseEvent {
+  isOn: boolean
+  constructor(isOn: boolean) {
+    super(MyEventNames.LanternToggleOnOff)
+    this.isOn = isOn
+  }
+}
 
 export enum MyEventNames {
   LanternGetPoint = 'LanternGetPoint',

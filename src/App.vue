@@ -1,5 +1,7 @@
 <template>
   <router-view v-if="initialized && pads?.length" />
+  <!-- <router-view /> -->
+
   <!-- <ArcaneStories /> -->
   <!-- <ArcaneStories v-if="initialized && pads?.length" /> -->
 

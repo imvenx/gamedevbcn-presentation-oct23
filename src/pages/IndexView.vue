@@ -75,7 +75,7 @@ const isLanternOn = ref(false)
 const darkAtmosphereAudio = ref<HTMLAudioElement>()
 
 onMounted(() => {
-  darkAtmosphereAudio.value!.volume = .1
+  darkAtmosphereAudio.value!.volume = .2
   darkAtmosphereAudio.value?.play()
 
   if (!pads.value?.length) return
@@ -102,9 +102,7 @@ onMounted(() => {
     lightEl.value?.setAttribute('r', intensity + '%')
   })
 
-  Arcane.msg.on(MyEventNames.LanternToggleOnOff, () => { isLanternOn.value = !isLanternOn.value })
-
-  Arcane.msg.on('OffLantern', () => isLanternOn.value = false)
+  Arcane.msg.on(MyEventNames.LanternToggleOnOff, (e: LanternToggleOnOffEvent) => { isLanternOn.value = e.isOn })
 })
 
 
