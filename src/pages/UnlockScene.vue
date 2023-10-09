@@ -12,10 +12,10 @@
     <line style="transform-origin: center;" ref="lineToRotate" x1="0" y1="0" x2="50" y2="50" stroke="red" />
   </svg>
 
-  <audio ref="lockAppearAudio" src="src/assets/audio/lockAppear.mp3" />
-  <audio ref="successAudio" src="src/assets/audio/success.mp3" />
-  <audio ref="rotateAudio" src="src/assets/audio/rotate.mp3" />
-  <audio ref="downloadPowerAudio" src="src/assets/audio/downloadPower.mp3" />
+  <audio ref="lockAppearAudio" src="/audio/lockAppear.mp3" />
+  <audio ref="successAudio" src="/audio/success.mp3" />
+  <audio ref="rotateAudio" src="/audio/rotate.mp3" />
+  <audio ref="downloadPowerAudio" src="/audio/downloadPower.mp3" />
 </template>
 
 <script lang="ts" setup>

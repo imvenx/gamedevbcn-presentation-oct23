@@ -21,6 +21,7 @@ const routes: RouteRecordRaw[] = [
           { path: 'LanternPad', component: () => import('pages/LanternPad.vue'), },
           { path: 'CoinPad', component: () => import('pages/CoinPad.vue'), },
           { path: 'RotatePad', component: () => import('pages/RotatePad.vue'), },
+          { path: 'GuitarPad', component: () => import('pages/GuitarPad.vue'), },
         ]
       },
     ],

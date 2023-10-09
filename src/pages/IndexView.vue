@@ -58,7 +58,7 @@
 
   <ArcaneCoin />
 
-  <audio ref="darkAtmosphereAudio" src="src/assets/audio/darkAtmosphere.mp3" />
+  <audio ref="darkAtmosphereAudio" src="/audio/darkAtmosphere.mp3" />
 </template>
 
 <script setup lang="ts">

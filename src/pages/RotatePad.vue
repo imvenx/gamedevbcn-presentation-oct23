@@ -5,23 +5,31 @@
   <q-btn ref="btn" @touchstart="startRotate" icon="history" size="xl" style="width: 100%; height: 100vh; scale: 10;"
     :color="buttonPressed ? 'green' : 'cyan'" outline />
 
-  <audio ref="buttonAudio" src="src/assets/audio/buttonAudio.mp3" />
+  <!-- <audio ref="buttonAudio" src="/audio/buttonAudio.mp3" /> -->
 </template>
 
 <script setup lang="ts">
 import { Arcane, ArcaneBaseEvent } from 'arcanepad-web-sdk';
 import { onMounted, onUnmounted, ref } from 'vue';
 
+import buttonAudioPath from '../assets/audio/buttonAudio.mp3'
+import { loadAudioBuffer, playAudioBuffer } from 'src/Utils';
+let buttonAudioBuffer: AudioBuffer
+
+
 const buttonPressed = ref(false)
 
-const buttonAudio = ref<HTMLAudioElement>()
+// const buttonAudio = ref<HTMLAudioElement>()
 
-onMounted(() => {
+onMounted(async () => {
+  buttonAudioBuffer = await loadAudioBuffer(buttonAudioPath);
+
   Arcane.msg.on('DownloadPower', () => startTextAnim())
 })
 
 function startRotate() {
-  buttonAudio.value?.play()
+  // buttonAudio.value?.play()
+  playAudioBuffer(buttonAudioBuffer)
   buttonPressed.value = true
   setTimeout(() => Arcane.msg.emitToViews(new ArcaneBaseEvent('StartRotate')), 1000);
 }

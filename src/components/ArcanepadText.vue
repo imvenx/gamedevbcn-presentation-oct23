@@ -13,9 +13,9 @@
 
     </g>
     <foreignObject>
-      <audio ref="coolAudio" src="src/assets/audio/cool.mp3" />
-      <audio ref="downloadAudio" src="src/assets/audio/downloadAudio.mp3" />
-      <audio ref="uploadAudio" src="src/assets/audio/uploadAudio.mp3" />
+      <audio ref="coolAudio" src="/audio/cool.mp3" />
+      <audio ref="downloadAudio" src="/audio/downloadAudio.mp3" />
+      <audio ref="uploadAudio" src="/audio/uploadAudio.mp3" />
     </foreignObject>
   </svg>
 </template>

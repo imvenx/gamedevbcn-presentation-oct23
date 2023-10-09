@@ -18,7 +18,7 @@ import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter()
-const padsRoutes = ['LanternPad', 'CoinPad', 'RotatePad']
+const padsRoutes = ['LanternPad', 'CoinPad', 'RotatePad', 'GuitarPad']
 let currentPad = 0
 
 function goToPad(direction: 'next' | 'back') {
@@ -26,13 +26,13 @@ function goToPad(direction: 'next' | 'back') {
   if (direction == 'back' && currentPad == 0 || direction == 'next' && currentPad == padsRoutes.length - 1) return
   if (direction == 'next') currentPad += 1
   else currentPad -= 1
-  router.push(padsRoutes[currentPad])
+  router.push('/Pad/' + padsRoutes[currentPad])
 }
 
 onMounted(() => {
   if (!Arcane.pad) return console.error('Arcane.pad is undefined')
 
-  Arcane.pad.setScreenOrientationPortrait()
+  // Arcane.pad.setScreenOrientationPortrait()
   Arcane.pad.startGetPointer()
 
   Arcane.pad.onGetPointer(({ x, y }) => Arcane.msg.emitToViews(new LanternGetLanternPointEvent(x, y)))

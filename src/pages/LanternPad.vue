@@ -11,7 +11,7 @@
       </svg>
     </div>
     <!-- <button @click="toggleOnOff()">On/Off</button> -->
-    <audio ref="turnOnLanternAudio" src="src/assets/audio/turnOnLantern.mp3" />
+    <audio ref="turnOnLanternAudio" src="/audio/turnOnLantern.mp3" />
   </div>
 </template>
 
@@ -29,7 +29,7 @@ const turnOnLanternAudio = ref<HTMLAudioElement>()
 onMounted(() => {
   if (!Arcane.pad) return console.error('Arcane.pad is undefined')
 
-  Arcane.pad.setScreenOrientationPortrait()
+  // Arcane.pad.setScreenOrientationPortrait()
   Arcane.pad.startGetPointer()
 
   Arcane.pad.onGetPointer(({ x, y }) => Arcane.msg.emitToViews(new LanternGetLanternPointEvent(x, y)))

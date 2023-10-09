@@ -12,16 +12,16 @@
 
 <script setup lang="ts">
 import { AEventName, Arcane, ArcanePad, IframePadConnectEvent } from 'arcanepad-web-sdk';
-import { InitialState } from 'arcanepad-web-sdk/src/models/models';
 import { onBeforeMount, onMounted, ref } from 'vue';
 import { pads } from './Global';
 import ArcaneStories from './components/ArcaneStories/ArcaneStories.vue';
+import { InitialState, ArcaneInitParams } from 'arcanepad-web-sdk/src/models/Models';
 
 const initialState = ref<InitialState>()
 const initialized = ref(false)
 
 onBeforeMount(async () => {
-  Arcane.init()
+  Arcane.init(new ArcaneInitParams({ padOrientation: 'Portrait' }))
   initialState.value = await Arcane.arcaneClientInitialized()
   pads.value = initialState.value.pads
   initialized.value = true
