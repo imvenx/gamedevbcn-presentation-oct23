@@ -63,7 +63,8 @@ onMounted(() => {
           svgCont.value!.style.transition = '1s all'
           svgCont.value!.style.opacity = '0'
           showDownloadLineAnim.value = true
-          setTimeout(() => router.push('RevealScene'), 5000);
+          setTimeout(() => showDownloadLineAnim.value = false, 4200);
+          // setTimeout(() => router.push('RevealScene'), 5000);
         }, 1000);
       }
     })

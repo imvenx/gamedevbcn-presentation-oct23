@@ -63,6 +63,7 @@ function startTextAnim() {
   setTimeout(() => {
     clearInterval(downloadAnimInterval)
     textAnimEl!.innerHTML = ''
+    textAnimEl!.style.color = 'black'
   }, 4000);
 }
 
